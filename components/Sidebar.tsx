@@ -5,6 +5,7 @@ import { sidebarLinks } from '@/constants'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 const Sidebar = () => {
   const pathname = usePathname()
@@ -25,7 +26,15 @@ const Sidebar = () => {
                 { 'bg-blue-1': isActive }
               )}
             >
-              {link.label}
+              <Image
+                src={link.imgUrl}
+                width={24}
+                height={24}
+                alt={link.label}
+              />
+              <p className='text-lg font-semibold max-lg:hidden'>
+                {link.label}
+              </p>
             </Link>
           )
         })}
