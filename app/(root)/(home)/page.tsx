@@ -1,3 +1,4 @@
+import MeetingTypeList from '@/components/MeetingTypeList'
 import { time } from 'console'
 import React from 'react'
 
@@ -24,6 +25,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <MeetingTypeList />
     </section>
   )
 }
