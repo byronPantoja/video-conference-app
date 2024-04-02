@@ -69,18 +69,18 @@ const MeetingTypeList = () => {
         handleClick={() => setMeetingState('isInstantMeeting')}
       />
       <HomeCard
-        img='/icons/join-meeting.svg'
-        title='Join Meeting'
-        description='via invitation link'
-        className='bg-blue-1'
-        handleClick={() => setMeetingState('isJoiningMeeting')}
-      />
-      <HomeCard
         img='/icons/schedule.svg'
         title='Schedule Meeting'
         description='Plan your meeting'
-        className='bg-purple-1'
+        className='bg-blue-1'
         handleClick={() => setMeetingState('isScheduleMeeting')}
+      />
+      <HomeCard
+        img='/icons/join-meeting.svg'
+        title='Join Meeting'
+        description='via invitation link'
+        className='bg-purple-1'
+        handleClick={() => setMeetingState('isJoiningMeeting')}
       />
       <HomeCard
         img='/icons/recordings.svg'
@@ -89,7 +89,27 @@ const MeetingTypeList = () => {
         className='bg-yellow-1'
         handleClick={() => router.push('/recordings')}
       />
-
+      {!callDetails ? (
+        <MeetingModal
+          isOpen={meetingState === 'isScheduleMeeting'}
+          onClose={() => setMeetingState(undefined)}
+          title='Create Meeting'
+          handleClick={createMeeting}
+        />
+      ) : (
+        <MeetingModal
+          isOpen={meetingState === 'isScheduleMeeting'}
+          onClose={() => setMeetingState(undefined)}
+          title='Meeting Created'
+          handleClick={() => {
+            // navigator.clipboard.writeText(meetingLink)
+            // toast({ title: 'Link Copied' })
+          }}
+          image='/icons/check.svg'
+          buttonIcon='/icons/copy.svg'
+          buttonText='Copy Meeting Link'
+        />
+      )}
       <MeetingModal
         isOpen={meetingState === 'isInstantMeeting'}
         onClose={() => setMeetingState(undefined)}
